@@ -2,21 +2,24 @@ package com.atilsamancioglu.kotlinintent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_next.*
+import com.atilsamancioglu.kotlinintent.databinding.ActivityNextBinding
 
 class NextActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityNextBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_next)
+        binding = ActivityNextBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         //getIntent
         val intent = intent
         val username = intent.getStringExtra("username")
         val name = intent.getStringExtra("name")
 
-        userNameTextNextActivity.text = "Username: " + username
-        nameTextNextActivity.text = "Name: " + name
+        binding.userNameTextNextActivity.text = "Username: " + username
+        binding.nameTextNextActivity.text = "Name: " + name
 
     }
 }

@@ -4,13 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
+import com.atilsamancioglu.kotlinintent.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
 
         println("on create called")
     }
@@ -48,8 +52,8 @@ class MainActivity : AppCompatActivity() {
     fun next(view: View){
 
         val intent = Intent(applicationContext,NextActivity::class.java)
-        intent.putExtra("username",userNameText.text.toString())
-        intent.putExtra("name",nameText.text.toString())
+        intent.putExtra("username",binding.userNameText.text.toString())
+        intent.putExtra("name",binding.nameText.text.toString())
         startActivity(intent)
         finish()
 
